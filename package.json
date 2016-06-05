@@ -1,0 +1,17 @@
+{
+  "name": "express-bapistrano",
+  "version": "1.0.0",
+  "description": "Express middleware for serving bapistrano deploys",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "author": "Qubit",
+  "license": "MIT",
+  "dependencies": {
+    "creed": "^1.0.1",
+    "express": "^4.13.4",
+    "moment": "^2.13.0",
+    "s3fs": "^2.4.7"
+  }
+}
