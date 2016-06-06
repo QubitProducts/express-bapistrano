@@ -28,7 +28,7 @@ module.exports = function expressBap (options) {
       .set('Content-Encoding', file.ContentEncoding)
       .set('Etag', file.ETag)
       .send(file.Body)
-  }))
+  })
 
   handler.getCurrent = function getCurrent (req) {
     let b = branch(req)
@@ -40,6 +40,10 @@ module.exports = function expressBap (options) {
 
   handler.getFile = co(function * getFile (req, path) {
     return yield cache.get(branch(req), path)
+  })
+
+  handler.getBranches = co(function * getBranches () {
+    return yield cache.branches()
   })
 
   return handler
