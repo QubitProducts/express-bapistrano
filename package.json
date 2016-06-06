@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "creed": "^1.0.1",
-    "express": "^4.13.4",
     "moment": "^2.13.0",
     "s3fs": "^2.4.7"
   }
