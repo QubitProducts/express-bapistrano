@@ -51,6 +51,18 @@ module.exports = function expressBap (options) {
       .send(file.Body)
   }))
 
+  router.getCurrent = function getCurrent (req) {
+    let b = branch(req)
+    return {
+      branch: b,
+      current: parseRelease(cache.current(b))
+    }
+  }
+
+  router.getFile = co(function * getFile (req, path) {
+    return yield cache.get(branch(req), path)
+  })
+
   return router
 }
 
