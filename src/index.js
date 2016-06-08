@@ -6,7 +6,7 @@ let parseRelease = require('./parseRelease')
 
 module.exports = function expressBap (options) {
   let cache = createCache(options)
-  let branch = isFunction(options.branch) ? options.branch : () =>  options.branch
+  let branch = isFunction(options.branch) ? options.branch : () => options.branch
 
   setInterval(cache.refresh, 60 * 1000)
 
