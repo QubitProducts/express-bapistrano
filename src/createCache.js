@@ -52,19 +52,18 @@ module.exports = function createCache (options) {
     return cache[branch]
   }
 
-  let readFile = co(function * readFile (filePath) {
-    try {
-      log('reading s3', filePath)
-      return yield s3.readFile(filePath)
-    } catch (err) {
-      if (err.code === 'NoSuchKey') {
-        log('reading s3 not found', filePath)
-        return false
-      }
-      log('reading s3 error', filePath, err.stack)
-      throw err
-    }
-  })
+  function readFile (filePath) {
+    log('reading s3', filePath)
+    return s3.readFile(filePath)
+      .catch(function (err) {
+        if (err.code === 'NoSuchKey') {
+          log('reading s3 not found', filePath)
+          return false
+        }
+        log('reading s3 error', filePath, err.stack)
+        throw err
+      })
+  }
 
   let get = co(function * (branch, filePath) {
     // ignore the query params for now
